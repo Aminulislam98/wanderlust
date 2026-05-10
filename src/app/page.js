@@ -1,6 +1,9 @@
-import Image from "next/image";
-import { HiH1 } from "react-icons/hi2";
+import Banner from "./components/Banner";
 
 export default function Home() {
-  return <h1>This is home page!</h1>;
+  return (
+    <div>
+      <Banner></Banner>
+    </div>
+  );
 }

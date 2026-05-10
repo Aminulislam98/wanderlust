@@ -17,7 +17,7 @@ const DetailsPage = async ({ params }) => {
     description,
     duration,
     category,
-  } = data ? data : [];
+  } = data;
   return (
     <div className="max-w-5xl w-full mx-auto px-4 py-6 md:py-10">
       <div className="border rounded-2xl overflow-hidden shadow-sm bg-white">
@@ -81,7 +81,7 @@ const DetailsPage = async ({ params }) => {
             <button className="w-full md:w-auto bg-black text-white px-8 py-3 rounded-xl hover:bg-gray-800 transition">
               Book Now
             </button>
-            <EditModal></EditModal>
+            <EditModal data={data}></EditModal>
           </div>
         </div>
       </div>

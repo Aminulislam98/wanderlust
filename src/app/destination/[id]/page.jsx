@@ -1,3 +1,4 @@
+import { EditModal } from "@/components/EditModal";
 import Image from "next/image";
 import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
@@ -76,10 +77,12 @@ const DetailsPage = async ({ params }) => {
               {description}
             </p>
           </div>
-
-          <button className="w-full md:w-auto bg-black text-white px-8 py-3 rounded-xl hover:bg-gray-800 transition">
-            Book Now
-          </button>
+          <div className="flex flex-row justify-between items-center">
+            <button className="w-full md:w-auto bg-black text-white px-8 py-3 rounded-xl hover:bg-gray-800 transition">
+              Book Now
+            </button>
+            <EditModal></EditModal>
+          </div>
         </div>
       </div>
     </div>

@@ -18,13 +18,13 @@ const DestinationCard = ({ destination }) => {
     _id,
   } = destination;
   return (
-    <div className=" border">
-      <div>
+    <div className=" border h-full">
+      <div className="w-full h-64 relative">
         <Image
           src={imageUrl}
-          width={400}
-          height={400}
+          fill
           alt={destinationName}
+          className="object-cover"
         ></Image>
       </div>
       <div className="flex-col p-3 space-y-2 ">
@@ -45,7 +45,7 @@ const DestinationCard = ({ destination }) => {
         <div>
           <Link
             className="flex justify-start font-semibold items-center text-blue-500"
-            href={"#"}
+            href={`/destination/${_id}`}
           >
             BOOK NOW <RxArrowTopRight />
           </Link>

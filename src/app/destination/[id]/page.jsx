@@ -1,3 +1,4 @@
+import { DeleteUserAlert } from "@/components/DeleteUserAlert";
 import { EditModal } from "@/components/EditModal";
 import Image from "next/image";
 import React from "react";
@@ -82,6 +83,7 @@ const DetailsPage = async ({ params }) => {
               Book Now
             </button>
             <EditModal data={data}></EditModal>
+            <DeleteUserAlert data={data}></DeleteUserAlert>
           </div>
         </div>
       </div>

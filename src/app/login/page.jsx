@@ -8,34 +8,26 @@ import {
   Form,
   Input,
   Label,
-  Separator,
   TextField,
 } from "@heroui/react";
 import { redirect } from "next/navigation";
-import { FcGoogle } from "react-icons/fc";
-const SignUpPage = () => {
+const LoginPage = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const user = Object.fromEntries(formData.entries());
-    const { data, error } = await authClient.signUp.email({
+    const { data, error } = await authClient.signIn.email({
       email: user.email,
       password: user.password, // user password -> min 8 characters by default
-      name: user.name, // user display name
     });
     if (data) {
-      redirect("/login");
+      redirect("/");
     }
-  };
-  const handleGoogleSign = async () => {
-    await authClient.signIn.social({
-      provider: "google",
-    });
   };
   return (
     <div className="max-w-7xl mx-auto w-full py-10 px-4">
       <div className="py-4">
-        <p className="text-center text-xl font-semibold">Create Account</p>
+        <p className="text-center text-xl font-semibold">Login your account</p>
         <p className="text-center text-sm ">
           Start your adventure with Wanderlust
         </p>
@@ -45,21 +37,6 @@ const SignUpPage = () => {
         className="flex max-w-md mx-auto rounded-2xl p-5 flex-col gap-4 border "
         onSubmit={onSubmit}
       >
-        <TextField
-          isRequired
-          name="name"
-          type="text"
-          validate={(value) => {
-            if (value < 5) {
-              return "Give at least 3 letters or more!";
-            }
-            return null;
-          }}
-        >
-          <Label>Name</Label>
-          <Input placeholder="Enter Your Name" />
-          <FieldError />
-        </TextField>
         <TextField
           isRequired
           name="email"
@@ -103,29 +80,15 @@ const SignUpPage = () => {
         <div className="flex gap-2">
           <Button className="w-full" type="submit">
             <Check />
-            Create account
+            Login
           </Button>
           <Button type="reset" variant="secondary" className="w-full">
             Reset
           </Button>
         </div>
       </Form>
-      <div className="flex justify-center items-center gap-3 w-full ">
-        <Separator className="flex-1"></Separator>
-        <p className="whitespace-nowrap text-center">or</p>
-        <Separator className="flex-1"></Separator>
-      </div>
-      <div>
-        <button
-          onClick={handleGoogleSign}
-          className="bg-gray-100 w-full py-2 rounded-2xl cursor-pointer flex flex-row justify-center items-center gap-1"
-        >
-          <FcGoogle className="text-xl" />
-          Continue with google
-        </button>
-      </div>
     </div>
   );
 };
 
-export default SignUpPage;
+export default LoginPage;

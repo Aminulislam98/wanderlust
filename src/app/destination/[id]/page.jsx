@@ -1,3 +1,4 @@
+import BookCard from "@/components/BookCard";
 import { DeleteUserAlert } from "@/components/DeleteUserAlert";
 import { EditModal } from "@/components/EditModal";
 import Image from "next/image";
@@ -79,9 +80,7 @@ const DetailsPage = async ({ params }) => {
             </p>
           </div>
           <div className="flex flex-row justify-between items-center">
-            <button className="w-full md:w-auto bg-black text-white px-8 py-3 rounded-xl hover:bg-gray-800 transition">
-              Book Now
-            </button>
+            <BookCard data={data} />
             <EditModal data={data}></EditModal>
             <DeleteUserAlert data={data}></DeleteUserAlert>
           </div>

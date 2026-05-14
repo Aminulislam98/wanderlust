@@ -21,10 +21,14 @@ const BookCard = ({ data }) => {
       departureDate: new Date(date),
     };
 
+    // getting token inside client side :
+    const { data: token } = await authClient.token();
+
     const res = await fetch("http://localhost:4000/booking", {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${token?.token}`,
       },
       body: JSON.stringify(bookingData),
     });

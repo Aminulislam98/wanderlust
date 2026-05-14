@@ -1,6 +1,8 @@
 import BookCard from "@/components/BookCard";
 import { DeleteUserAlert } from "@/components/DeleteUserAlert";
 import { EditModal } from "@/components/EditModal";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 import Image from "next/image";
 import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
@@ -8,7 +10,16 @@ import { SlCalender } from "react-icons/sl";
 
 const DetailsPage = async ({ params }) => {
   const { id } = await params;
-  const res = await fetch(`http://localhost:4000/destination/${id}`);
+
+  // getting token inside server side:
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const res = await fetch(`http://localhost:4000/destination/${id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
   const data = await res.json();
   const {
     imageUrl,

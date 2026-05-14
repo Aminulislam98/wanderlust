@@ -1,5 +1,6 @@
 import { Delete } from "@/components/DeleteAlert";
 import { auth } from "@/lib/auth";
+import { div } from "framer-motion/client";
 import { headers } from "next/headers";
 import Image from "next/image";
 
@@ -8,12 +9,21 @@ const MyBookingPage = async () => {
     headers: await headers(), // you need to pass the headers object.
   });
   const user = session?.user;
-  const res = await fetch(`http://localhost:4000/booking/${user.id}`);
-  const data = await res.json();
 
-  return (
-    <div className="max-w-7xl mx-auto">
-      {data.map((item) => (
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+  const res = await fetch(`http://localhost:4000/booking/${user.id}`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+  const result = await res.json();
+  const data = Array.isArray(result) ? result : [];
+
+  return data ? (
+    <div>
+      {data?.map((item) => (
         <div key={item._id}>
           <div>
             <Image
@@ -28,6 +38,8 @@ const MyBookingPage = async () => {
         </div>
       ))}
     </div>
+  ) : (
+    <h1>No data found</h1>
   );
 };
 

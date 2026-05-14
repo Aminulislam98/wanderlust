@@ -1,20 +1,23 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import toast from "react-hot-toast";
 
 export function Delete({ bookingId }) {
   const handleDelete = async () => {
+    const { data: token } = await authClient.token();
     const res = await fetch(`http://localhost:4000/booking/${bookingId}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${token?.token}`,
       },
     });
     const data = await res.json();
     console.log(data);
-    toast.success("Delete successfully");
     window.location.reload();
+    toast.success("Delete successfully");
   };
   return (
     <AlertDialog>

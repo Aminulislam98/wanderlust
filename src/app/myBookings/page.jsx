@@ -21,9 +21,7 @@ const MyBookingPage = async () => {
       },
     },
   );
-  const result = await res.json();
-  const data = Array.isArray(result) ? result : [];
-
+  const data = await res.json();
   return data ? (
     <div>
       {data?.map((item) => (

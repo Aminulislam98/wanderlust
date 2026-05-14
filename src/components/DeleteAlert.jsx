@@ -7,13 +7,16 @@ import toast from "react-hot-toast";
 export function Delete({ bookingId }) {
   const handleDelete = async () => {
     const { data: token } = await authClient.token();
-    const res = await fetch(`http://localhost:4000/booking/${bookingId}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${token?.token}`,
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${bookingId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${token?.token}`,
+        },
       },
-    });
+    );
     const data = await res.json();
     console.log(data);
     window.location.reload();

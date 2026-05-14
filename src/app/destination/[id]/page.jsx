@@ -15,11 +15,14 @@ const DetailsPage = async ({ params }) => {
   const { token } = await auth.api.getToken({
     headers: await headers(),
   });
-  const res = await fetch(`http://localhost:4000/destination/${id}`, {
-    headers: {
-      authorization: `Bearer ${token}`,
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/destination/${id}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     },
-  });
+  );
   const data = await res.json();
   const {
     imageUrl,

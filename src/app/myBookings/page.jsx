@@ -13,11 +13,14 @@ const MyBookingPage = async () => {
   const { token } = await auth.api.getToken({
     headers: await headers(),
   });
-  const res = await fetch(`http://localhost:4000/booking/${user.id}`, {
-    headers: {
-      authorization: `Bearer ${token}`,
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${user.id}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     },
-  });
+  );
   const result = await res.json();
   const data = Array.isArray(result) ? result : [];
 

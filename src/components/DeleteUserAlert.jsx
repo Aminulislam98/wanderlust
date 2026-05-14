@@ -16,7 +16,6 @@ export function DeleteUserAlert({ data }) {
       },
     );
     const data = await res.json(0);
-    console.log("data has been deleted", data);
   };
   return (
     <AlertDialog>

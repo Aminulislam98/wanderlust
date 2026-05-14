@@ -4,7 +4,6 @@ import React from "react";
 const DestinationPage = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/destination`);
   const dataDestination = await res.json();
-  console.log("this is data form mongodb:", dataDestination);
   return (
     <div className="max-w-7xl mx-auto w-full">
       <h1>All destinations</h1>

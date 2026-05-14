@@ -42,7 +42,6 @@ export function EditModal({ data }) {
       },
     );
     const data = await res.json();
-    console.log("destination updated data form client side:", data);
   };
 
   return (

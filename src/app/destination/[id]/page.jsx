@@ -34,16 +34,19 @@ const DetailsPage = async ({ params }) => {
     duration,
     category,
   } = data;
+
   return (
     <div className="max-w-5xl w-full mx-auto px-4 py-6 md:py-10">
       <div className="border rounded-2xl overflow-hidden shadow-sm bg-white">
         <div className="relative w-full h-62 sm:h-87 md:h-125">
-          <Image
-            src={imageUrl}
-            fill
-            alt={destinationName}
-            className="object-cover"
-          />
+          {imageUrl && (
+            <Image
+              src={imageUrl}
+              fill
+              alt={destinationName}
+              className="object-cover"
+            />
+          )}
         </div>
 
         <div className="p-5 md:p-8 space-y-5">
